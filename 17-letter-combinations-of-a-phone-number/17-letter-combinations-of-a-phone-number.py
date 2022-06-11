@@ -1,7 +1,7 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        MAPPING = ('0', '1', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz')
-        res = ['']
-        for d in digits:
-            res=[pre + cur for pre in res for cur in MAPPING[int(d)]]
-        return res if len(digits) > 0 else []
+        mapping=("0","1","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz")
+        res=[""]
+        for i in digits:
+            res=[p+q for p in res for q in mapping[int(i)]]
+        return res if len(digits)>0 else []
