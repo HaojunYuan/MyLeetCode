@@ -14,7 +14,7 @@ class Solution:
         return self.merge(l,r)
     
     def merge(self,l,r):
-        dummy=curr=ListNode()
+        dummy=curr=ListNode
         while l and r:
             if l.val<r.val:
                 curr.next=l
