@@ -4,7 +4,7 @@ class Solution:
         stack=[]
         for i in s:
             if i in dic:
-                stack.append(i)
+                stack+=i
             elif stack and dic[stack[-1]]==i:
                 stack.pop()
             else:
