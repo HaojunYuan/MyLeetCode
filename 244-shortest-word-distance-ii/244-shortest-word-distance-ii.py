@@ -2,8 +2,8 @@ class WordDistance:
 
     def __init__(self, wordsDict: List[str]):
         self.dic=defaultdict(list)
-        for i, word in enumerate(wordsDict):
-            self.dic[word].append(i)
+        for i, w in enumerate(wordsDict):
+            self.dic[w].append(i)
 
     def shortest(self, word1: str, word2: str) -> int:
         list1,list2=self.dic[word1],self.dic[word2]
