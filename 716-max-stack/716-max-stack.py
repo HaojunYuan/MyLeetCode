@@ -22,6 +22,7 @@ class MaxStack(list):
         
         #Now we find the most recent maximum number. Pop it off
         self.pop()
+        #Use reversed for loop instead of map()
         for i in reversed(popped):
             self.push(i)
         return maxSoFar
