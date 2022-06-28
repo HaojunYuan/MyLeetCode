@@ -2,11 +2,11 @@ class Solution:
     def isValid(self, s: str) -> bool:
         dic={'(':')','[':']','{':'}'}
         stack=[]
-        for c in s:
-            if c in dic:
-                stack+=c
-            elif stack and dic[stack[-1]]==c:
-                stack.pop()
-            else:
+        for char in s:
+            if char in dic:
+                stack+=char
+            elif stack==[] or dic[stack[-1]]!=char:
                 return False
+            else:
+                stack.pop()
         return stack==[]
