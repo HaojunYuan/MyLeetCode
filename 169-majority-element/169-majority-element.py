@@ -4,6 +4,7 @@ class Solution:
         # for num in dic:
         #     if dic[num]>len(nums)//2:
         #         return num
+        
         # Boyer-Moore Voting Algorithm
         count=0
         candidate=None
