@@ -1,5 +1,6 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
+        # HashMap/Dictionary Approach
         # dic=collections.Counter(nums)
         # for num in dic:
         #     if dic[num]>len(nums)//2:
