@@ -13,4 +13,3 @@ class Solution:
             pre=curr
             curr=temp
         return pre
-            
