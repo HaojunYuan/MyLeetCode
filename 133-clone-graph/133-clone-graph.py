@@ -20,10 +20,11 @@ class Solution:
         clone=Node(node.val,[])
         self.visited[node]=clone
         
-        # if node.neighbors:
         clone.neighbors=[self.cloneGraph(n) for n in node.neighbors]
         
         return clone
+    
+    
 #     #Iterative approach
 #     def cloneGraph(self, node: 'Node') -> 'Node':
 #         visited={}
