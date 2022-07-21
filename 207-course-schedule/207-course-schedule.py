@@ -10,7 +10,7 @@ class Solution(object):
         # create graph
         for pair in prerequisites:
             x, y = pair
-            graph[x].append(y)
+            graph[y].append(x)
         # visit each node
         for i in range(numCourses):
             if not self.dfs(graph, visited, i):
