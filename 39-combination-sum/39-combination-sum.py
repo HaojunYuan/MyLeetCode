@@ -1,14 +1,15 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res=[]
-        self.dfs(candidates,target,[],res)
-        return res
+        def helper(target,candidates,path,res):
+            if target<0:
+                return
+            if target==0:
+                res.append(path)
+                return
+            for i in range(len(candidates)):
+                helper(target-candidates[i],candidates[i:],path+([candidates[i]]),res)
         
-    def dfs(self,nums,target,path,res):
-        if target < 0:
-            return 
-        if target==0:
-            res.append(path)
-            return
-        for i in range(len(nums)):
-            self.dfs(nums[i:],target-nums[i],path+[nums[i]],res)
+        helper(target,candidates,[],res)
+        return res
+            
