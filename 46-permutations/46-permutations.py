@@ -10,7 +10,7 @@ class Solution:
                 nums[first], nums[i] = nums[i], nums[first]
                 # use next integers to complete the permutations
                 backtrack(first + 1)
-                # backtrack
+                # backtrack (put the array back so that next iteration has the same array)
                 nums[first], nums[i] = nums[i], nums[first]
         
         n = len(nums)
