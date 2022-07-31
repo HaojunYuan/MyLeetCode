@@ -7,39 +7,20 @@ class Node:
 """
 
 class Solution:
-    #Recursive approach
+    
     def __init__(self):
-        self.visited={}
+        self.clone={}
         
     def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
             return node
-        if node in self.visited:
-            return self.visited[node]
+        if node in self.clone:
+            return self.clone[node]
         
-        clone=Node(node.val,[])
-        self.visited[node]=clone
+        cloneNode=Node(node.val,[])
+        self.clone[node]=cloneNode
         
-        clone.neighbors=[self.cloneGraph(n) for n in node.neighbors]
+        cloneNode.neighbors=[self.cloneGraph(i) for i in node.neighbors]
         
-        return clone
-    
-    
-#     #Iterative approach
-#     def cloneGraph(self, node: 'Node') -> 'Node':
-#         visited={}
-#         if not node:
-#             return node
-#         queue=deque([node])
-#         visited[node]=Node(node.val,[])
+        return cloneNode
         
-#         while queue:
-#             curr=queue.popleft()
-#             for neighbor in curr.neighbors:
-#                 if neighbor not in visited:
-#                     visited[neighbor]=Node(neighbor.val,[])
-#                     queue.append(neighbor)
-#                 visited[curr].neighbors.append(visited[neighbor])
-#         return visited[node]
-                
-            
