@@ -8,18 +8,20 @@ class Solution:
             nums[i]=nums[j]
             nums[j]=temp
             
-        left=0
-        
-        for i in range(len(nums)):
-            if nums[i]==0:
-                swap(nums,i,left)
-                left+=1
-        
+        left=curr=0
         right=len(nums)-1
-        for j in range(len(nums)-1,-1,-1):
-            if nums[j]==2:
-                swap(nums,j,right)
+        
+        while curr<=right:
+            if nums[curr]==0:
+                swap(nums,curr,left)
+                left+=1
+                curr+=1
+            elif nums[curr]==2:
+                swap(nums,curr,right)
                 right-=1
+            else:
+                curr+=1
+
         
         return nums
                 
