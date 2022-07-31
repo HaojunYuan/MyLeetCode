@@ -4,5 +4,5 @@ class Solution:
         for i in range(len(nums)):
             comp=target-nums[i]
             if comp in dic:
-                return [dic[comp],i]
+                return [i,dic[comp]]
             dic[nums[i]]=i
