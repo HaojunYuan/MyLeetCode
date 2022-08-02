@@ -12,5 +12,6 @@ class Solution:
             seen[i] = 1
             for j in G[i]: dfs(j)
             return 1
-
+        
+        #Iterate through computers to find number of components. We then need n-1 cables to connet them
         return sum(dfs(i) for i in range(n)) - 1
