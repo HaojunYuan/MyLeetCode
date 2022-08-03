@@ -1,21 +1,18 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        def helper(grid,i,j):
-            if i<0 or j<0 or i>=row or j>=col or grid[i][j]!=1:
+        def dfs(grid,i,j):
+            if i<0 or j<0 or i>=r or j>=c or grid[i][j]!=1:
                 return 0
             grid[i][j]=0
-            
-            return 1+helper(grid,i+1,j)+helper(grid,i-1,j)+helper(grid,i,j+1)+helper(grid,i,j-1)
-            
-            
-        row=len(grid)
-        col=len(grid[0])
+            return 1+dfs(grid,i+1,j)+dfs(grid,i-1,j)+dfs(grid,i,j+1)+dfs(grid,i,j-1)
+        
+        
+        r=len(grid)
+        c=len(grid[0])
         res=0
-        
-        for i in range(row):
-            for j in range(col):
+        for i in range(r):
+            for j in range(c):
                 if grid[i][j]==1:
-                    area=helper(grid,i,j)
+                    area=dfs(grid,i,j)
                     res=max(res,area)
-        
         return res
