@@ -8,4 +8,4 @@ class Solution:
             for i in range(len(subDomains)):
                 counter['.'.join(subDomains[i:])]+=count
         
-        return [" ".join((str(a),b)) for b,a in counter.items() ]
+        return [' '.join((str(a),b)) for b,a in counter.items() ]
