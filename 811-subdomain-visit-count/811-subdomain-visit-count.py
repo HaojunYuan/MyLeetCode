@@ -1,11 +1,11 @@
 class Solution:
     def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
         counter=collections.Counter()
-        for domain in cpdomains:
-            count,domain=domain.split()
+        for d in cpdomains:
+            count,domain=d.split()
             count=int(count)
-            subDomains=domain.split('.')
-            for i in range(len(subDomains)):
-                counter['.'.join(subDomains[i:])]+=count
+            frags=domain.split('.')
+            for i in range(len(frags)):
+                counter['.'.join(frags[i:])]+=count
         
-        return [' '.join((str(a),b)) for b,a in counter.items() ]
+        return [' '.join((str(c),k)) for k,c in counter.items()]
