@@ -5,4 +5,5 @@ class Solution:
             for j in range(len(nums2)-1,-1,-1):
                 if nums1[i]==nums2[j]:
                     cache[i][j]=cache[i+1][j+1]+1
+        
         return max(max(row) for row in cache)
