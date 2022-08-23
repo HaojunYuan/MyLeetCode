@@ -10,10 +10,10 @@ class Solution:
         if root in (None,p,q):
             return root
         
-        left_res=self.lowestCommonAncestor(root.left,p,q)
-        right_res=self.lowestCommonAncestor(root.right,p,q)
+        left=self.lowestCommonAncestor(root.left,p,q)
+        right=self.lowestCommonAncestor(root.right,p,q)
         
-        if left_res and right_res:
+        if left and right:
             return root
         else:
-            return left_res or right_res
+            return left or right
