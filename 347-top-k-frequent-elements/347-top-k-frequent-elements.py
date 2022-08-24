@@ -1,11 +1,11 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        bucket=[[] for _ in range(len(nums)+1)]
         counter=Counter(nums)
+        freqList=[[] for _ in range(len(nums)+1)]
         for num,freq in counter.items():
-            bucket[freq].append(num)
+            freqList[freq].append(num)
         res=[]
-        for sublist in bucket:
-            for num in sublist:
+        for l in freqList:
+            for num in l:
                 res.append(num)
         return res[::-1][:k]
