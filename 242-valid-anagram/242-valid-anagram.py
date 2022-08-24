@@ -10,3 +10,4 @@ class Solution:
             if num!=0:
                 return False
         return True
+    #return Counter(s)==Counter(t)
