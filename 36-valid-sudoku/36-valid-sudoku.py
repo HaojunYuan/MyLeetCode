@@ -1,13 +1,13 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        big=set()
-        for i in range(9):
-            for j in range(9):
-                if board[i][j]!=".":
-                    cur=board[i][j]
-                    if (i,cur) in big or (cur,j) in big or (i//3,j//3,cur) in big:
+        sudoku=set()
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j]!='.':
+                    temp=board[i][j]
+                    if (i,temp) in sudoku or (temp,j) in sudoku or (temp,i//3,j//3) in sudoku:
                         return False
-                    big.add((i,cur))
-                    big.add((cur,j))
-                    big.add((i//3,j//3,cur))
+                    sudoku.add((i,temp))
+                    sudoku.add((temp,j))
+                    sudoku.add((temp,i//3,j//3))
         return True
