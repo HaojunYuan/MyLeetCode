@@ -2,10 +2,10 @@ class Solution:
     def isValid(self, s: str) -> bool:
         dic={'(':')','[':"]",'{':'}'}
         stack=[]
-        for char in s:
-            if char in dic:
-                stack.append(char)
-            elif stack and dic[stack[-1]]==char:
+        for c in s:
+            if c in dic:
+                stack.append(c)
+            elif stack and dic[stack[-1]]==c:
                 stack.pop()
             else:
                 return False
