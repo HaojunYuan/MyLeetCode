@@ -9,14 +9,15 @@ class Node:
 class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
         if not root:
-            return []
+            return root
+        dq=deque([root])
         res=[]
-        queue=deque([root])
-        while queue:
+        while dq:
             level=[]
-            for _ in range(len(queue)):
-                node=queue.popleft()
+            for _ in range(len(dq)):
+                node=dq.popleft()
                 level.append(node.val)
-                queue+=node.children
+                for c in node.children:
+                    dq.append(c)
             res.append(level)
         return res
