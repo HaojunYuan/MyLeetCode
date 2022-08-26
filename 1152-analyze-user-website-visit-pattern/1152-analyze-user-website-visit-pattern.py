@@ -5,8 +5,8 @@ class Solution:
             graph[u].append(w)
         
         counter = Counter()
-        for u, routes in graph.items():
-            for triple in set(itertools.combinations(routes, 3)):
+        for user, path in graph.items():
+            for triple in set(itertools.combinations(path, 3)):
                 counter[triple]+=1
         
         res=None
