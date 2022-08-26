@@ -5,7 +5,7 @@ class Solution:
             pattern[user].append(web)
             
         counter = Counter()
-        for u, routes in pattern.items():
+        for user, routes in pattern.items():
             for triple in set(itertools.combinations(routes, 3)):
                 counter[triple]+=1
         
