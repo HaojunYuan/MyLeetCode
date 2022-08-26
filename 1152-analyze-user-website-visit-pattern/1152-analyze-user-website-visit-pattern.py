@@ -5,8 +5,8 @@ class Solution:
             pattern[user].append(web)
             
         counter = Counter()
-        for user, routes in pattern.items():
-            for triple in set(itertools.combinations(routes, 3)):
+        for user, path in pattern.items():
+            for triple in set(itertools.combinations(path, 3)):
                 counter[triple]+=1
         
         res=None
