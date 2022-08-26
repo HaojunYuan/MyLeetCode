@@ -1,10 +1,8 @@
 class Solution:
     def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
         pattern=defaultdict(list)
-        for u, t, w in sorted(zip(username, timestamp, website)):
-            pattern[u].append(w)
-            
-
+        for user, time, web in sorted(zip(username, timestamp, website)):
+            pattern[user].append(web)
             
         counter = Counter()
         for u, routes in pattern.items():
