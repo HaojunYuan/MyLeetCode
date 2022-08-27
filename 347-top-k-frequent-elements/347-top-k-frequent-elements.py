@@ -5,7 +5,7 @@ class Solution:
         for num,freq in counter.items():
             freqList[freq].append(num)
         res=[]
-        for l in freqList:
-            for num in l:
+        for i in range(len(freqList)-1,-1,-1):
+            for num in freqList[i]:
                 res.append(num)
-        return res[::-1][:k]
+        return res[:k]
