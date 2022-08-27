@@ -8,19 +8,19 @@ class Node:
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.capacity=capacity
         self.cache={}
+        self.capacity=capacity
         self.head,self.tail=Node(),Node()
         self.head.next=self.tail
         self.tail.pre=self.head
-        
+    
     def addToFront(self,node):
-        node.pre=self.head
         node.next=self.head.next
+        node.pre=self.head
         
         self.head.next.pre=node
         self.head.next=node
-    
+        
     def remove(self,node):
         node.pre.next=node.next
         node.next.pre=node.pre
@@ -32,6 +32,7 @@ class LRUCache:
             self.addToFront(node)
             return node.val
         return -1
+        
 
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
