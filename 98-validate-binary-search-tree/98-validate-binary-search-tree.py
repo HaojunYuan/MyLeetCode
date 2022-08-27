@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def helper(node,low=-math.inf,high=math.inf):
+        def helper(node,low=-math.inf, high=math.inf):
             if not node:
                 return True
             elif node.val<=low or node.val>=high:
@@ -15,4 +15,3 @@ class Solution:
                 return helper(node.left,low,node.val) and helper(node.right,node.val,high)
         
         return helper(root)
-            
