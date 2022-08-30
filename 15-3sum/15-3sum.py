@@ -9,6 +9,7 @@ class Solution:
                     complement=-val1-val2
                     if complement in seen and seen[complement]==i: #only wen we have a complement for the current loop we can use the complement
                         res.add(tuple(sorted((val1, val2, complement))))
+                        #sorted returns a list which is not hashable. Need to cast the list into a tuple so that we can put it into set
                     seen[val2]=i
-        return list(res)
+        return res
                         
