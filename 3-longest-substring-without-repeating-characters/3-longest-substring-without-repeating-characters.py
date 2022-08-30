@@ -9,4 +9,3 @@ class Solution:
             res=max(res,i-left+1)
             dic[s[i]]=i
         return res
-                
