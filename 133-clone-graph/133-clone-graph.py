@@ -8,11 +8,11 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
-        #BFS
+        #bfs
         if not node:
             return node
-        clone={}
         dq=deque([node])
+        clone={}
         while dq:
             temp=dq.popleft()
             if temp not in clone:
@@ -23,5 +23,4 @@ class Solution:
                     dq.append(n)
                 clone[temp].neighbors.append(clone[n])
         return clone[node]
-                
         
