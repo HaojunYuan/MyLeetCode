@@ -1,15 +1,26 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        res,dup=set(),set()
-        seen={}
-        for i, val1 in enumerate(nums):
-            if val1 not in dup: #only continue if we have never seen this number before
-                dup.add(val1)
-                for j,val2 in enumerate(nums[i+1:]):
-                    complement=-val1-val2
-                    if complement in seen and seen[complement]==i: #only wen we have a complement for the current loop we can use the complement
-                        res.add(tuple(sorted((val1, val2, complement))))
-                        #sorted returns a list which is not hashable. Need to cast the list into a tuple so that we can put it into set
-                    seen[val2]=i
+        nums.sort()
+        res=[]
+        for i in range(len(nums)):
+            if nums[i]>0:
+                break
+            elif i>0 and nums[i]==nums[i-1]:
+                continue
+            else:
+                l,r=i+1,len(nums)-1
+                while l<r:
+                    s=nums[i]+nums[l]+nums[r]
+                    if s<0:
+                        l+=1
+                    elif s>0:
+                        r-=1
+                    else:
+                        res.append([nums[i],nums[l],nums[r]])
+                        while l<r and nums[l]==nums[l+1]:
+                            l+=1
+                        while l<r and nums[r]==nums[r-1]:
+                            r-=1
+                        l+=1
+                        r-=1
         return res
-                        
