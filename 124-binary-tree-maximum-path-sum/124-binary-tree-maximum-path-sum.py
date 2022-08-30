@@ -9,15 +9,13 @@ class Solution:
         self.maxSum=-math.inf
 
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        def maxGain(node):
+        def maxSum(node):
             if not node:
                 return 0
-            
-            leftGain=max(0,maxGain(node.left))
-            rightGain=max(0,maxGain(node.right))
-            
-            self.maxSum=max(self.maxSum,node.val+leftGain+rightGain)
-            return node.val+max(leftGain,rightGain)
-        maxGain(root)
+            left=max(0,maxSum(node.left))
+            right=max(0,maxSum(node.right))
+            self.maxSum=max(self.maxSum,node.val+left+right)
+            return node.val+max(left,right)
+        maxSum(root)
         return self.maxSum
             
