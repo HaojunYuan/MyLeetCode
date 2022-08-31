@@ -1,29 +1,23 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        if not prerequisites:
-            return True
-        
+        dic=defaultdict(list)
         indegree=[0]*numCourses
-        dic={i:[] for i in range(numCourses)}
         
-        for child, parent in prerequisites:
+        for child,parent in prerequisites:
             dic[parent].append(child)
             indegree[child]+=1
         
         dq=deque()
-        
         for i in range(len(indegree)):
             if indegree[i]==0:
                 dq.append(i)
-                
-        count=0
+        
+        res=[]
         while dq:
-            course=dq.popleft()
-            count+=1
-            for child in dic[course]:
+            temp=dq.popleft()
+            res.append(temp)
+            for child in dic[temp]:
                 indegree[child]-=1
                 if indegree[child]==0:
                     dq.append(child)
-        
-        return count==numCourses
-            
+        return len(res)==numCourses
