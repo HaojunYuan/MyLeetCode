@@ -6,7 +6,7 @@ class Solution:
             res[i]=res[i-1]*nums[i-1]
         right=1
         for i in range(len(nums)-1,-1,-1):
-            res[i]*=right
+            res[i]=res[i]*right
             right*=nums[i]
         return res
             
