@@ -3,12 +3,10 @@ class TrieNode:
         self.children={}
         self.word=False
         
-
 class Trie:
 
     def __init__(self):
         self.root=TrieNode()
-        
 
     def insert(self, word: str) -> None:
         curr=self.root
@@ -17,7 +15,6 @@ class Trie:
                 curr.children[i]=TrieNode()
             curr=curr.children[i]
         curr.word=True
-        
 
     def search(self, word: str) -> bool:
         curr=self.root
