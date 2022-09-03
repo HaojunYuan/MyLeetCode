@@ -3,9 +3,9 @@ class Solution:
         res=list(words[0])
         for word in words:
             newRes=[]
-            for char in word:
-                if char in res:
-                    newRes.append(char)
-                    res.remove(char)
+            for c in word:
+                if c in res:
+                    newRes+=c
+                    res.remove(c)
             res=newRes
         return res
