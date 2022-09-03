@@ -1,7 +1,7 @@
 class Solution:
     def findKthLargest(self, nums, k):
         if not nums: return
-        pivot=nums[-1]
+        pivot = random.choice(nums)
         left=[x for x in nums if x<pivot]
         mid=[x for x in nums if x==pivot]
         right=[x for x in nums if x>pivot]
