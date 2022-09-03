@@ -6,8 +6,8 @@ class Solution:
         for i in range(len(s)):
             counter[ord(s[i])-ord('a')]+=1
             counter[ord(t[i])-ord('a')]-=1
-        for num in counter:
-            if num!=0:
+        for i in range(len(counter)):
+            if counter[i]!=0:
                 return False
         return True
-    #return Counter(s)==Counter(t)
+            
