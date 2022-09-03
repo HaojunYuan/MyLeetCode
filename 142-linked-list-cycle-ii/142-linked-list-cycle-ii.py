@@ -5,26 +5,17 @@
 #         self.next = None
 
 class Solution:
-    def findIntersect(self,head):
-        slow=head
-        fast=head
-        while fast and fast.next:
-            slow=slow.next
-            fast=fast.next.next
-            if slow==fast:
-                return slow
-
-        return None
-    
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head:
+        slow=fast=head
+        while fast and fast.next:
+            fast=fast.next.next
+            slow=slow.next
+            if fast==slow:
+                break
+        else:
             return None
-        intersect=self.findIntersect(head)
-        if not intersect:
-            return None
-        pt1=head
-        pt2=intersect
-        while pt1!=pt2:
-            pt1=pt1.next
-            pt2=pt2.next
-        return pt1
+        slow=head
+        while fast!=slow:
+            fast=fast.next
+            slow=slow.next
+        return fast
