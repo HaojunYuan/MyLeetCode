@@ -4,4 +4,3 @@ class Solution:
         for num in nums:
             res+=[n+[num] for n in res]
         return res
-        
