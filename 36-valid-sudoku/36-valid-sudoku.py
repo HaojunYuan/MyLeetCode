@@ -4,10 +4,10 @@ class Solution:
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if board[i][j]!='.':
-                    temp=board[i][j]
-                    if (i,temp) in sudoku or (temp,j) in sudoku or (temp,i//3,j//3) in sudoku:
+                    num=board[i][j]
+                    if (i,num) in sudoku or (num,j) in sudoku or (num,i//3,j//3) in sudoku:
                         return False
-                    sudoku.add((i,temp))
-                    sudoku.add((temp,j))
-                    sudoku.add((temp,i//3,j//3))
+                    sudoku.add((i,num))
+                    sudoku.add((num,j))  
+                    sudoku.add((num,i//3,j//3))  
         return True
