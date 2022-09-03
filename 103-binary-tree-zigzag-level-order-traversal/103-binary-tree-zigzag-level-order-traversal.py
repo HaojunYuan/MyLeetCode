@@ -11,14 +11,15 @@ class Solution:
         dq=deque([root])
         res=[]
         direction=1
-        
         while dq:
             level=[]
             for _ in range(len(dq)):
                 node=dq.popleft()
                 level.append(node.val)
-                if node.left: dq.append(node.left)
-                if node.right:dq.append(node.right)
+                if node.left:
+                    dq.append(node.left)
+                if node.right:
+                    dq.append(node.right)
             res.append(level[::direction])
             direction*=-1
         return res
