@@ -7,15 +7,13 @@
 class Solution:
     def __init__(self):
         self.maxSum=-math.inf
-
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        def maxSum(node):
+        def maxGain(node):
             if not node:
                 return 0
-            left=max(0,maxSum(node.left))
-            right=max(0,maxSum(node.right))
-            self.maxSum=max(self.maxSum,node.val+left+right)
-            return node.val+max(left,right)
-        maxSum(root)
+            leftGain=max(0,maxGain(node.left))
+            rightGain=max(0,maxGain(node.right))
+            self.maxSum=max(self.maxSum,node.val+leftGain+rightGain)
+            return node.val+max(leftGain,rightGain)
+        maxGain(root)
         return self.maxSum
-            
