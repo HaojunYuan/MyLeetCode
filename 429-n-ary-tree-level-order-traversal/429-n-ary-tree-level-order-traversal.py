@@ -17,7 +17,7 @@ class Solution:
             for _ in range(len(dq)):
                 node=dq.popleft()
                 level.append(node.val)
-                for c in node.children:
-                    dq.append(c)
+                dq+=node.children
             res.append(level)
         return res
+            
