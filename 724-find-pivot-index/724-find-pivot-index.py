@@ -7,4 +7,3 @@ class Solution:
                 return i
             leftsum+=x
         return -1
-            
