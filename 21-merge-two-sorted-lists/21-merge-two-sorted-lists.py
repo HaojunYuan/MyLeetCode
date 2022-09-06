@@ -12,8 +12,7 @@ class Solution:
                 list1=list1.next
             else:
                 curr.next=list2
-                list2 = list2.next 
+                list2=list2.next
             curr=curr.next
-        
         curr.next=list1 or list2
         return dummy.next
