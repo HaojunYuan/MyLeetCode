@@ -6,7 +6,7 @@ class Solution:
         for char, freq in counter.items():
             bucket[freq].append(char)
             
-        for i in range(len(bucket)):
+        for i in range(len(bucket)-1,-1,-1):
             for c in bucket[i]:
                 res.append(c*i)
-        return ''.join(reversed(res))
+        return ''.join(res)
