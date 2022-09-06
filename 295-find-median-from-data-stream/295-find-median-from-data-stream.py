@@ -1,4 +1,3 @@
-import heapq
 class MedianFinder:
 
     def __init__(self):
@@ -12,10 +11,8 @@ class MedianFinder:
 
     def findMedian(self) -> float:
         if len(self.large)>len(self.small):
-            return float(self.large[0])
+            return self.large[0]
         return (self.large[0]-self.small[0])/2
-        
-
 
 # Your MedianFinder object will be instantiated and called as such:
 # obj = MedianFinder()
