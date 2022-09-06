@@ -9,7 +9,6 @@ class Solution:
                 r-=1
             if s[l]!=s[r]:
                 return False
-            else:
-                l+=1
-                r-=1
+            l+=1
+            r-=1
         return True
