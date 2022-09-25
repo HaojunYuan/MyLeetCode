@@ -3,9 +3,9 @@ class Solution:
         res=[]
         for i in range(n+1):
             tempsum=0
-            temp=i
-            while temp!=0:
-                tempsum+=temp%2
-                temp=temp//2
+            # temp=i
+            while i!=0:
+                tempsum+=i%2
+                i=i//2
             res.append(tempsum)
         return res
