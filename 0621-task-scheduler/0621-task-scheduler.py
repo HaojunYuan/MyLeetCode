@@ -12,7 +12,7 @@ class Solution:
         
         intervals=maxFreq-1
         slots=intervals*(n-maxCount+1)
-        idle=max(0,slots-(len(tasks)-maxFreq*maxCount))
-        res=len(tasks)+idle
-        return res
+        availableTasks=len(tasks)-maxFreq*maxCount
+        idle=max(0,slots-availableTasks)
+        return len(tasks)+idle
         
