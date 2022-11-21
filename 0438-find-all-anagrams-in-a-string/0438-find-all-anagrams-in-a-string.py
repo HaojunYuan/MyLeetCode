@@ -3,17 +3,17 @@ class Solution:
         counter=Counter(p)
         l,r=0,0
         res=[]
-        count=len(p)
+        target=len(p)
         while r<len(s):
             if counter[s[r]]>0:
-                count-=1
+                target-=1
             counter[s[r]]-=1
             r+=1
-            if count==0:
+            if target==0:
                 res.append(l)
-            if r-l==len(p):
+            if r-l==len(p): 
                 if counter[s[l]]>=0:
-                    count+=1
+                    target+=1
                 counter[s[l]]+=1
                 l+=1
         return res
