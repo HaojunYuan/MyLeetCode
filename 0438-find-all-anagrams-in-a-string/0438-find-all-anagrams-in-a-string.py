@@ -11,7 +11,7 @@ class Solution:
             r+=1
             if target==0:
                 res.append(l)
-            if r-l==len(p): 
+            if r-l==len(p):
                 if counter[s[l]]>=0:
                     target+=1
                 counter[s[l]]+=1
