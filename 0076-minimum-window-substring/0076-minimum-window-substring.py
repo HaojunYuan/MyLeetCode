@@ -2,9 +2,9 @@ class Solution:
     def minWindow(self, s: str, t: str) -> str:
         counter=Counter(t)
         l,r=0,0
+        start,end=0,0
         missing=len(t)
         minlen=math.inf
-        start,end=0,0
         while r<len(s):
             if counter[s[r]]>0:
                 missing-=1
