@@ -1,7 +1,7 @@
 class Solution:
     def largestRectangleArea(self, height):
-        height.append(0)
-        stack = [-1]
+        height.append(0) # dummy height
+        stack = [-1] #in case that stack is empty we use -1
         ans = 0
         for i in range(len(height)):
             while height[i] < height[stack[-1]]:
@@ -9,5 +9,5 @@ class Solution:
                 w = i - stack[-1] - 1
                 ans = max(ans, h * w)
             stack.append(i)
-        height.pop()
+        # height.pop()
         return ans
