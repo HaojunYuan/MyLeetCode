@@ -9,8 +9,9 @@ class Solution:
         def helper(node,low=-math.inf,high=math.inf):
             if not node:
                 return True
-            elif node.val<=low or node.val>=high:
+            if node.val<=low or node.val>=high:
                 return False
-            else:
-                return helper(node.left,low,node.val) and helper(node.right,node.val,high)
+
+            return helper(node.left,low,node.val) and helper(node.right,node.val,high)
+
         return helper(root)
