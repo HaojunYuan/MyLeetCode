@@ -6,8 +6,7 @@ class Solution:
         for n in nums:
             if n-1 not in nums:
                 length=1
-                while n+1 in nums:
+                while n+length in nums:
                     length+=1
-                    n+=1
                 res=max(res,length)
         return res
