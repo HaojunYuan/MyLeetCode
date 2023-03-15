@@ -11,7 +11,9 @@ class Solution:
             if not node:
                 return 0
             l,r=dfs(node.left), dfs(node.right)
+            #l+r is used to calculate maximum path
             self.res=max(self.res,l+r)
+            #To form the maximum path, we need the path with maximum depth
             return 1+max(l,r)
         dfs(root)
         return self.res
