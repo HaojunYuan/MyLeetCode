@@ -1,8 +1,8 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        # A dp array indicating the maximum total value I can rob up to a house
-        rob1, rob2=0,0
-        for n in nums:
-            rob1,rob2=rob2,max(rob1+n,rob2)
-        return rob2
-            
+        if len(nums)<3: return max(nums)
+        rob1,rob2=0,0
+        dp=[0]*len(nums)
+        for i in range(len(nums)):
+            dp[i]=max(dp[i-1],dp[i-2]+nums[i])
+        return dp[-1]
