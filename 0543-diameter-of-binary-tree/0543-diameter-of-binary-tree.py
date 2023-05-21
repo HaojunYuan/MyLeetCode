@@ -7,13 +7,15 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.res=0
-        def dfs(node):
+        # for each node:
+        # 1. update the diameter
+        # 2. return the longest path it can extend from either left or right side
+        def helper(node):
             if not node:
                 return 0
-            l,r=dfs(node.left), dfs(node.right)
-            #l+r is used to calculate maximum path
-            self.res=max(self.res,l+r)
-            #To form the maximum path, we need the path with maximum depth
-            return 1+max(l,r)
-        dfs(root)
+            left,right=helper(node.left),helper(node.right)
+            self.res=max(self.res,left+right)
+            return 1+max(left,right)
+        helper(root)
         return self.res
+        
