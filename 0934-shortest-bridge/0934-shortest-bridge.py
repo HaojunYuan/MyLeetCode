@@ -2,31 +2,37 @@ class Solution:
     def shortestBridge(self, grid: List[List[int]]) -> int:
         visited=set()
         n=len(grid)
+        dirs=[(1,0),(-1,0),(0,1),(0,-1)]
+        def valid(r,c):
+            return r>=0 and c>=0 and r<n and c<n
         # 1. Add to visited
         # 2. Push onto the queue
         def dfs(r,c):        
-            if r<0 or c<0 or r==n or c==n or not grid[r][c] or (r,c) in visited:
+            if not valid(r,c) or not grid[r][c] or (r,c) in visited:
                 return
             visited.add((r,c))
-            dfs(r+1,c)
-            dfs(r-1,c)
-            dfs(r,c+1)
-            dfs(r,c-1)
-            
+            for x,y in dirs:
+                dfs(r+x,c+y)
+        
+        def bfs(r,c):
+            dq=deque(visited)
+            res=0
+            while dq:
+                for _ in range(len(dq)):
+                    r,c=dq.popleft()
+                    for x,y in dirs:
+                        rr,cc=r+x,c+y
+                        if not valid(rr,cc) or (rr,cc) in visited:
+                            continue
+                        if grid[rr][cc]:
+                            return res
+                        visited.add((rr,cc))
+                        dq.append((rr,cc))  
+                res+=1
         for r in range(n):
             for c in range(n):
                 if grid[r][c]:
-                    dfs(r,c)     
-                    dq=deque(visited)
-                    res=0
-                    while dq:
-                        for _ in range(len(dq)):
-                            r,c=dq.popleft()
-                            for x,y in ([r+1,c],[r-1,c],[r,c-1],[r,c+1]):
-                                if 0<=x<n and 0<=y<n and (x,y) not in visited:
-                                    if grid[x][y]:
-                                        return res
-                                    visited.add((x,y))
-                                    dq.append((x,y))  
-                        res+=1
+                    dfs(r,c)
+                    return bfs(r,c)
+                    
                 
