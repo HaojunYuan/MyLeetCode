@@ -8,12 +8,20 @@ class Solution:
         for i,m in enumerate(manager):
             dic[m].append(i)
         
-        # bfs
-        q=deque([(headID,0)])
-        while q:
-            m,time=q.popleft()
+        # dfs
+        def dfs(node,time):
             self.res=max(self.res,time)
-            for s in dic[m]:
-                q.append((s,time+informTime[m]))
+            for s in dic[node]:
+                dfs(s,time+informTime[node])
+        dfs(headID,0)
         return self.res
+        
+        # # bfs
+        # q=deque([(headID,0)])
+        # while q:
+        #     m,time=q.popleft()
+        #     self.res=max(self.res,time)
+        #     for s in dic[m]:
+        #         q.append((s,time+informTime[m]))
+        # return self.res
             
