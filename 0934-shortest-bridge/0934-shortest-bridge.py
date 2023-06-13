@@ -1,38 +1,43 @@
 class Solution:
     def shortestBridge(self, grid: List[List[int]]) -> int:
-        visited=set()
+        # if we find a land, do dfs to get all land
+        # for each level, for all nodes inside that level, do bfs towards the other island
+        # common functionds
+        dirs=[[1,0],[-1,0],[0,1],[0,-1]]
         n=len(grid)
-        dirs=[(1,0),(-1,0),(0,1),(0,-1)]
-        def valid(r,c):
+        # a set for visited nodes
+        visited=set()
+        def isValid(r,c):
             return r>=0 and c>=0 and r<n and c<n
-        # 1. Add to visited
-        # 2. Push onto the queue
-        def dfs(r,c):        
-            if not valid(r,c) or not grid[r][c] or (r,c) in visited:
+        
+        def dfs(r,c):
+            if not isValid(r,c) or (r,c) in visited or not grid[r][c]:
                 return
             visited.add((r,c))
             for x,y in dirs:
                 dfs(r+x,c+y)
         
-        def bfs(r,c):
-            dq=deque(visited)
+        def bfs():
             res=0
-            while dq:
-                for _ in range(len(dq)):
-                    r,c=dq.popleft()
+            q=deque(visited)
+            # we add to visited and the deque
+            while q:
+                for _ in range(len(q)):
+                    r,c=q.popleft()
                     for x,y in dirs:
-                        rr,cc=r+x,c+y
-                        if not valid(rr,cc) or (rr,cc) in visited:
+                        newr,newc=r+x,c+y
+                        if not isValid(newr,newc) or (newr,newc) in visited:
                             continue
-                        if grid[rr][cc]:
+                        if grid[newr][newc]:
                             return res
-                        visited.add((rr,cc))
-                        dq.append((rr,cc))  
+                        q.append((newr,newc))
+                        visited.add((newr,newc))
                 res+=1
         for r in range(n):
             for c in range(n):
                 if grid[r][c]:
                     dfs(r,c)
-                    return bfs(r,c)
-                    
-                
+                    return bfs()
+        
+        
+                        
