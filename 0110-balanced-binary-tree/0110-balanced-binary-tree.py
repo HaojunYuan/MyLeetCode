@@ -4,12 +4,19 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+class Info:
+    def __init__(self,height, isBalanced):
+        self.height=height
+        self.isBalanced=isBalanced
+        
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
-        return abs(self.getDepth(root.left)-self.getDepth(root.right))<2 and self.isBalanced(root.left) and self.isBalanced(root.right)
-    def getDepth(self,node):
+        return self.process(root).isBalanced
+    def process(self, node):
         if not node:
-            return 0
-        return 1+max(self.getDepth(node.left),self.getDepth(node.right))
+            return Info(0, True)
+        left=self.process(node.left)
+        right=self.process(node.right)
+        balance=abs(left.height-right.height)<=1 and left.isBalanced and right.isBalanced
+        return Info(1+max(left.height, right.height), balance)
+        
