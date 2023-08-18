@@ -6,6 +6,7 @@
 #         self.right = right
 
 # The path may or may not pass through the root
+        
 class Info:
     def __init__(self, partial, total):
         self.partial=partial
@@ -22,6 +23,6 @@ class Solution:
         left.partial=max(left.partial, 0)
         right.partial=max(right.partial, 0)
         
-        partial=node.val+max(left.partial, right.partial, 0)
+        partial=node.val+max(left.partial, right.partial)
         total=max(left.total, right.total, left.partial+right.partial+node.val)
         return Info(partial, total)
