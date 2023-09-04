@@ -7,8 +7,8 @@
 class Solution:
     def __init__(self):
         self.hashMap = {}
-        self.small = math.inf
-        self.large = -math.inf
+        self.small = 0
+        self.large = 0
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         # Use a hashmap to store col - node indexing
         if not root:
@@ -27,7 +27,4 @@ class Solution:
                 q.append([node.right,col+1])
                 
         
-        res=[0]*(self.large - self.small +1)
-        for key, value in self.hashMap.items():
-            res[key-self.small]=value
-        return res
+        return [self.hashMap[i] for i in range(self.small, self.large+1)]
