@@ -1,34 +1,37 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        l, r=0, len(nums)-1
-        res=self.process(l,r,nums)
-        return res
+        l, r = 0, len(nums)-1
+        self.process(l,r,nums)
+        return nums
     
     def process(self, l, r, arr):
         if l>=r:
-            return [arr[l]]
-        mid=l+(r-l)//2
-        left=self.process(l,mid,arr)
-        right=self.process(mid+1, r, arr)
-        res=self.merge(left, right)
-        return res
-    
-    def merge(self, left, right):
+            return
+        mid = l+(r-l)//2
+        self.process(l,mid, arr)
+        self.process(mid+1, r, arr)
+        self.merge(l, mid, r, arr)
+
+    def merge(self, l,mid, r, arr):
         temp=[]
-        i=0
-        j=0
-        while i<len(left) and j<len(right):
-            if left[i]<right[j]:
-                temp.append(left[i])
+        i, j = l, mid+1
+        while i<=mid and j<=r:
+            if arr[i]<arr[j]:
+                temp.append(arr[i])
                 i+=1
             else:
-                temp.append(right[j])
+                temp.append(arr[j])
                 j+=1
         
-        while i<len(left):
-            temp.append(left[i])
+        while i<=mid:
+            temp.append(arr[i])
             i+=1
-        while j<len(right):
-            temp.append(right[j])
+        while j<=r:
+            temp.append(arr[j])
             j+=1
-        return temp
+        
+        # modify the input arr
+        for i in range(len(temp)):
+            arr[l+i]=temp[i]
+        
+        
