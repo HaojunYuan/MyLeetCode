@@ -4,6 +4,7 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+        
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
         """
@@ -32,4 +33,3 @@ class Solution:
         # append the right subtree
         root.right = right_subtree
         
-        return root
