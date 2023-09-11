@@ -1,16 +1,15 @@
 class Solution:
-    def minAbsoluteDifference(self, nums: List[int], x: int) -> int:
-        tmp = sorted(nums[x:])
-        res = inf
-        for i, n in enumerate(nums):
-            if not tmp:
-                break
-            if n <= tmp[0]:
-                res = min(tmp[0] - n, res)
-            elif n >= tmp[-1]:
-                res = min(n - tmp[-1], res)
-            else:
-                idx = bisect_left(tmp, n)
-                res = min(min(abs(n - tmp[idx]), abs(n - tmp[idx-1])), res)
-            tmp.pop(bisect_left(tmp, nums[i+x]))
+    def minAbsoluteDifference(self, nums: List[int], k: int) -> int:
+        nums=sorted((val,idx) for idx,val in enumerate(nums))         
+        stack1, stack2, res =[], [], float('inf')  
+
+        for val,idx in nums:
+            heappush(stack1,(k+idx,val)) 
+            heappush(stack2,(k-idx,val))
+
+            while stack1 and stack1[0][0]<=idx:                
+                 res=min(res, val-heappop(stack1)[1])             
+            while stack2 and stack2[0][0]<=-idx:                
+                 res=min(res, val-heappop(stack2)[1])      
+
         return res
