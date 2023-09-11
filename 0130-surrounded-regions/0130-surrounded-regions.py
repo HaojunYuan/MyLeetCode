@@ -28,11 +28,8 @@ class Solution:
             for c in range(cols):
                 if board[r][c]=='O':
                     board[r][c]='X'
-                    
-                    
-        for r in range(rows):
-            for c in range(cols):
-                if board[r][c]=='a':
+                elif board[r][c]=='a':
                     board[r][c]='O'
+                
         return board
         
