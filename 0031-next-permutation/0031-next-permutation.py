@@ -14,5 +14,5 @@ class Solution:
                         nums[i:] = sorted(nums[i:])
                         return
         else:
-            nums.reverse()  # Reverse the list in-place
+            nums.sort()  # Reverse the list in-place
             return
