@@ -11,16 +11,16 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
-        # like a subset with limited condition
-        def backtrack(i, curr):
-            if len(curr)==len(digits):
+        if not digits:
+            return res
+        
+        def process(start, curr):
+            if start == len(digits):
                 res.append(curr)
                 return
-            # for each letter in number dictionary, we can choose to include it or not in the combination
-            for l in digitToChar[digits[i]]:
-                curr+=l
-                backtrack(i+1, curr)
-                curr=curr[:-1]
-        if digits:
-            backtrack(0,'')
+            for c in digitToChar[digits[start]]:
+                curr += c
+                process(start + 1, curr[:])
+                curr = curr[:-1]
+        process(0, '')
         return res
