@@ -1,18 +1,21 @@
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
-        i=0
-        n = len(nums)
-        while i<n:
-            # We sort the positive integres in the array, 1, 2, 3, ...
-            # j is the index that nums[i] should be placed
-            j = nums[i] - 1
-            if 0<= j < n and nums[i] != nums[j]:
-                nums[i], nums[j] = nums[j], nums[i]
+        # we do not care about negative numbers and 0
+        # if correctly ordered, nums[i] == i + 1
+        # while nums[i] != i, swap nums[i] with nums[nums[i]]
+        # place all numbers on the correct index. Iterate through the nums. If there isi a mis match, return the missing positive
+        # otherwise, return len(nums) + 1
+        i = 0
+        while i < len(nums):
+            targetIndex = nums[i] - 1
+            if 0 <= targetIndex < len(nums) and nums[i] != nums[targetIndex]:
+                nums[i], nums[targetIndex] = nums[targetIndex], nums[i]
             else:
                 i += 1
         
-        for i in range(n):
+        for i in range(len(nums)):
             if nums[i] != i + 1:
                 return i + 1
-        return n + 1
+        return len(nums) + 1
                 
+        
