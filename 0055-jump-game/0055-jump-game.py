@@ -1,14 +1,23 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        dp = [0] * len(nums)
-        dp[len(nums) - 1] = 1
-        target = len(nums) - 1
+        n = len(nums)
+        max_reach = 0  # Initialize the maximum reachable position.
+
+        for i in range(n):
+            # If the current position is unreachable, return False.
+            if i > max_reach:
+                return False
+            
+            # Update the maximum reachable position.
+            max_reach = max(max_reach, i + nums[i])
+
+            # If we can reach the end, return True.
+            if max_reach >= n - 1:
+                return True
         
-        for i in range(len(nums) - 1, -1, -1):
-            if i + nums[i] >= target and dp[target]:
-                dp[i] = 1
-                target = i
-        return dp[0]
-        
-    
-    
+        return True  # If we reach here, we can reach the end.
+
+# Usage:
+# sol = Solution()
+# result = sol.canJump([2, 3, 1, 1, 4])
+# print(result)  # Output: True
