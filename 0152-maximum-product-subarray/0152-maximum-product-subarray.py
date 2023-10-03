@@ -6,5 +6,5 @@ class Solution:
             temp = posMax
             posMax = max(posMax * n, negMax * n, n)
             negMax = min(temp * n, negMax * n, n)
-            res = max(posMax, res)
+            res = max(posMax, negMax, res)
         return res
