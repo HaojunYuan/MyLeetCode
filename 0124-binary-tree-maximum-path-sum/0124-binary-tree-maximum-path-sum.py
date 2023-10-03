@@ -4,25 +4,19 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-# The path may or may not pass through the root
-        
-class Info:
-    def __init__(self, partial, total):
-        self.partial=partial
-        self.total=total
-        
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        return self.process(root).total
+        partial, total = self.process(root)
+        return total
+    
     def process(self, node):
         if not node:
-            return Info(0,-math.inf)
-        left=self.process(node.left)
-        right=self.process(node.right)
-        left.partial=max(left.partial, 0)
-        right.partial=max(right.partial, 0)
+            return 0, -math.inf
         
-        partial=node.val+max(left.partial, right.partial)
-        total=max(left.total, right.total, left.partial+right.partial+node.val)
-        return Info(partial, total)
+        left, leftMax = self.process(node.left)
+        right, rightMax = self.process(node.right)
+        left = max(0, left)
+        right = max(0, right)
+        partial = max(max(left, right) + node.val, 0)
+        total = max(leftMax, rightMax, left + right + node.val)
+        return partial, total
