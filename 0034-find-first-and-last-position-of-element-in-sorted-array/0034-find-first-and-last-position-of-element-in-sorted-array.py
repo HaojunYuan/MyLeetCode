@@ -1,39 +1,32 @@
-class Solution(object):
-    def searchRange(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-
-        low, high = 0, len(nums)-1
-        first = self.findFirstIndex(nums, low, high, target)
-
-        second = self.findLastIndex(nums, low, high, target)
-        
-        return [first, second]
-    def findFirstIndex(self, nums, low, high, target):
-        res = -1
-        while low <= high:
-            mid = (low+high)//2
-            if nums[mid] == target:
-                res = mid
-                high = mid-1
-            elif nums[mid] > target:
-                high = mid-1
-            else:
-                low = mid + 1
-        return res
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        # binary search
+        # 1st search: find left boundary
+        # 2nd search: find right boundary
+        left = self.searchLeft(nums, target)
+        right = self.searchRight(nums, target)
+        if 0 <= left < len(nums) and 0 <= right < len(nums) and left <= right and nums[left] == target:
+            return [left, right]
+        else:
+            return [-1, -1]
     
-    def findLastIndex(self, nums, low, high, target):
-        res = -1
-        while low <= high:
-            mid = (low+high)//2
-            if nums[mid] == target:
-                res = mid
-                low = mid+1
-            elif nums[mid] > target:
-                high = mid-1
+    def searchLeft(self, nums, target):
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = l + (r - l) // 2
+            if nums[mid] >= target:
+                r = mid - 1
             else:
-                low = mid + 1
-        return res
+                l = mid + 1
+        return l
+    
+    def searchRight(self, nums, target):
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = l + (r - l) // 2
+            if nums[mid] > target:
+                r = mid - 1
+            else:
+                l = mid + 1
+        return r
+                
