@@ -16,11 +16,13 @@ class Solution:
         
         def process(start, curr):
             if start == len(digits):
-                res.append(curr)
+                res.append(''.join(curr))
                 return
-            for c in digitToChar[digits[start]]:
-                curr += c
-                process(start + 1, curr[:])
-                curr = curr[:-1]
-        process(0, '')
+            number = digits[start]
+            for c in digitToChar[number]:
+                curr.append(c)
+                process(start + 1, curr)
+                curr.pop()
+        
+        process(0, [])
         return res
