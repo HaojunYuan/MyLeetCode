@@ -7,21 +7,21 @@ class Trie:
     def __init__(self):
         self.root = TrieNode()
     
-    def insert(self, string):
+    def insert(self, word):
         curr = self.root
-        for c in string:
+        for c in word:
             if c not in curr.children:
                 curr.children[c] = TrieNode()
             curr = curr.children[c]
             curr.count += 1
-
+        
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        myTrie = Trie()
+        trie = Trie()
         for s in strs:
-            myTrie.insert(s)
-        curr = myTrie.root
+            trie.insert(s)
         res = ''
+        curr = trie.root
         for c in strs[0]:
             if c in curr.children:
                 curr = curr.children[c]
