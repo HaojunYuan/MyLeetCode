@@ -12,17 +12,14 @@ class Solution:
             "9": "wxyz",
         }
         if not digits:
-            return res
-        
-        def process(start, curr):
-            if start == len(digits):
-                res.append(''.join(curr))
+            return
+        def helper(curr, i):
+            if i == len(digits):
+                res.append(curr)
                 return
-            number = digits[start]
-            for c in digitToChar[number]:
-                curr.append(c)
-                process(start + 1, curr)
-                curr.pop()
-        
-        process(0, [])
+            for char in digitToChar[digits[i]]:
+                curr += char
+                helper(curr, i + 1)
+                curr = curr[:-1]
+        helper('', 0)
         return res
