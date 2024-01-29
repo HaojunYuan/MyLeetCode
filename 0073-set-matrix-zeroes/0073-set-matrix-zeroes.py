@@ -3,26 +3,18 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        if not matrix:
-            return
-
-        rows, cols = len(matrix), len(matrix[0])
-        zero_rows, zero_cols = set(), set()
-
-        # Find rows and columns with zeros
-        for i in range(rows):
-            for j in range(cols):
-                if matrix[i][j] == 0:
-                    zero_rows.add(i)
-                    zero_cols.add(j)
-
-        # Set rows to zero
-        for row in zero_rows:
-            for j in range(cols):
-                matrix[row][j] = 0
-
-        # Set columns to zero
-        for col in zero_cols:
-            for i in range(rows):
-                matrix[i][col] = 0
+        row_set = set()
+        col_set = set()
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                if matrix[r][c] == 0:
+                    row_set.add(r)
+                    col_set.add(c)
         
+        for r in row_set:
+            for c in range(len(matrix[0])):
+                matrix[r][c] = 0
+        
+        for r in range(len(matrix)):
+            for c in col_set:
+                matrix[r][c] = 0
