@@ -4,32 +4,23 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-        
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
         """
         Do not return anything, modify root in-place instead.
         """
-        if root is None:
-            return None
+        self.process(root)
+    
+    def process(self, node):
+        if not node:
+            return
         
-        # recursive case
-        # flatten left subtree
-        self.flatten(root.left)
-        # flatten right subtree
-        self.flatten(root.right)
-        
-        # store right subtree
-        right_subtree = root.right
-        
-        # move left subtree to right
-        root.right = root.left
-        root.left = None
-        
-        # find the end of the new right subtree
-        while root.right:
-            root = root.right
-        
-        # append the right subtree
-        root.right = right_subtree
-        
+        left = self.process(node.left)
+        right = self.process(node.right)
+        node.right = left
+        node.left = None
+        curr = node
+        while curr.right:
+            curr = curr.right
+        curr.right = right
+        return node
