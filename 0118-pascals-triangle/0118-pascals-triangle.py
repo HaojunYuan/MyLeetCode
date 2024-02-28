@@ -1,13 +1,16 @@
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-        if numRows == 1:
-            return [[1]]
-        dp = [[1] for _ in range(numRows)]
-        dp[1] = [1, 1]
-        for i in range(2, numRows):
-            for j in range(len(dp[i - 1]) - 1):
-                dp[i].append(dp[i - 1][j] + dp[i - 1][j + 1])
-            dp[i].append(1)
-        return dp
-                    
-            
+        res = [[1], [1, 1]]
+        if numRows < 3:
+            return res[:numRows]
+        prev = [1, 1]
+        for r in range(3, numRows + 1):
+            curr = [1]
+            for i in range(r - 2):
+                curr.append(prev[i] + prev[i + 1])
+            curr.append(1)
+            res.append(curr)
+            prev = curr
+        return res
+        
+        
