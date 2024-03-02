@@ -5,7 +5,8 @@
 #         self.next = next
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # merge sort
+        # merge sort, split from middle and merge
+        # find middle node
         return self.process(head)
     
     def process(self, node):
@@ -13,33 +14,31 @@ class Solution:
             return
         if not node.next:
             return node
-        dummy = ListNode(0, node)
-        mid = self.findMid(dummy)
-        left = dummy.next
-        right = mid.next
-        mid.next = None
-        sortedLeft = self.process(left)
-        sortedRight = self.process(right)
-        return self.merge(sortedLeft, sortedRight)
+        firstHalf, secondHalf = self.splitMid(node)
+        sortedFirstHalf = self.process(firstHalf)
+        sortedSecondHalf = self.process(secondHalf)
+        return self.merge(sortedFirstHalf, sortedSecondHalf)
     
-    def merge(self, l, r):
+    def merge(self, a, b):
+        # merge two sorted linked list
         dummy = curr = ListNode()
-        while l and r:
-            if l.val < r.val:
-                curr.next = l
-                l = l.next
+        while a and b:
+            if a.val < b.val:
+                curr.next = a
+                a = a.next
             else:
-                curr.next = r
-                r = r.next
+                curr.next = b
+                b = b.next
             curr = curr.next
-        
-        curr.next = l or r
+        curr.next = a or b
         return dummy.next
-        
     
-    def findMid(self, node):
-        slow = fast = node
+    def splitMid(self, head):
+        dummy = ListNode(0, head)
+        slow = fast = dummy
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        return slow
+        secondhalf = slow.next
+        slow.next = None
+        return head, secondhalf
