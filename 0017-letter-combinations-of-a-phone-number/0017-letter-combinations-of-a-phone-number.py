@@ -1,7 +1,15 @@
-class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        res = []
-        digitToChar = {
+class Solution(object):
+
+
+    
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        if not digits:
+            return
+        self.dic = {
             "2": "abc",
             "3": "def",
             "4": "ghi",
@@ -11,15 +19,16 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
-        if not digits:
+        self.res = []
+        self.process(digits, 0, [])
+        return self.res
+    
+    def process(self, digits, start, path):
+        if start == len(digits):
+            self.res.append(''.join(path))
             return
-        def helper(curr, i):
-            if i == len(digits):
-                res.append(curr)
-                return
-            for char in digitToChar[digits[i]]:
-                curr += char
-                helper(curr, i + 1)
-                curr = curr[:-1]
-        helper('', 0)
-        return res
+        letters = self.dic[digits[start]]
+        for c in letters:
+            path.append(c)
+            self.process(digits, start + 1, path)
+            path.pop()
