@@ -1,7 +1,4 @@
 class Solution(object):
-
-
-    
     def letterCombinations(self, digits):
         """
         :type digits: str
