@@ -1,15 +1,17 @@
-class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
-        res=[]
-        def dfs(i, curr):
-            if i==len(nums):
-                res.append(curr[:])
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        def dfs(start, path):
+            if start==len(nums):
+                res.append(path[:])
                 return
-            # include current number
-            curr.append(nums[i])
-            dfs(i+1, curr)
-            curr.pop()
-            dfs(i+1, curr)
-                
-        dfs(0,[])
+            path.append(nums[start])
+            dfs(start+1, path)
+            path.pop()
+            dfs(start+1, path)
+        dfs(0, [])
         return res
