@@ -1,10 +1,10 @@
-class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        # if nums[i + 1] < nums[i], then nums[i + 1] is the minimum
-        # we need to find such pattern using binary search
-        
-        l = 0
-        r = len(nums) - 1
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        l, r = 0, len(nums) - 1
         if nums[l] <= nums[r]:
             return nums[l]
         while l <= r:
