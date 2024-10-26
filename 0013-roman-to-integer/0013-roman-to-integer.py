@@ -9,8 +9,9 @@ class Solution:
             "D": 500,
             "M": 1000,
         }
-        # if s[i] > s[i + 1], proceed as usual
-        # if s[i] < s[i + 1], we need to add s[i + 1] and minus s[i], and move i 2 indices forward
+        
+        # if s[i] >= s[i + 1], proceed as usual
+        # if s[i] < s[i + 1], add s[i + 1] and minus s[i], and move i 2 indices forward
         i = 0
         res = 0
         while i < len(s):
@@ -21,9 +22,8 @@ class Solution:
                 else:
                     res = res + values[s[i + 1]] - values[s[i]]
                     i += 2
+            # last index
             else:
                 res += values[s[i]]
-                break
+                i += 1
         return res
-        
-            
