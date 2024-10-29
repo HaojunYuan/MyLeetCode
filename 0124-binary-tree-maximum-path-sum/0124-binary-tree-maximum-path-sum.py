@@ -6,18 +6,31 @@
 #         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        return self.process(root)[1]
+        # The second element in the returned tuple represents the maximum path sum in the tree
+        return self.calculatePathSums(root)[1]
     
-    def process(self, node):
-        # for any node, we have 2 possibilities
-        # 1. max path will go through curr node
-        # 2. max path does not go through curr node
+    def calculatePathSums(self, node: Optional[TreeNode]) -> (int, int):
+        """
+        Recursive helper function to calculate:
+        - `max_single_path`: maximum path sum starting from the current node and extending downward to a leaf.
+        - `max_path_sum`: maximum path sum considering paths that might pass through or not pass through the current node.
+        
+        Returns:
+            Tuple (max_single_path, max_path_sum).
+        """
+        # Base case: If node is None, max single path is 0 and max path sum is negative infinity (no path exists).
         if not node:
             return 0, -math.inf
-        left, leftmax = self.process(node.left)
-        right, rightmax = self.process(node.right)
         
-        local = max(max(left,right) + node.val, 0)
-        localmax = max(leftmax, rightmax, left + right + node.val)
+        # Recursively calculate values for left and right subtrees
+        left_single_path, left_max_path_sum = self.calculatePathSums(node.left)
+        right_single_path, right_max_path_sum = self.calculatePathSums(node.right)
         
-        return local, localmax
+        # Max path starting from this node and extending downward
+        max_single_path = max(node.val, node.val + max(left_single_path, right_single_path), 0)
+
+        # Maximum path sum for the subtree rooted at this node
+        max_path_sum = max(left_max_path_sum, right_max_path_sum, node.val + left_single_path + right_single_path)
+        
+        # Return the maximum single path sum and the maximum path sum seen so far
+        return max_single_path, max_path_sum
