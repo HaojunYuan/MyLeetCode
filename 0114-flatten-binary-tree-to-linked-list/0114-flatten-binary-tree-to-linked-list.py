@@ -14,13 +14,11 @@ class Solution:
     def process(self, node):
         if not node:
             return
-        
-        left = self.process(node.left)
-        right = self.process(node.right)
-        node.right = left
+        right = node.right
+        node.right = self.process(node.left)
         node.left = None
         curr = node
         while curr.right:
             curr = curr.right
-        curr.right = right
+        curr.right = self.process(right)
         return node
